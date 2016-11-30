@@ -8,9 +8,6 @@ def call(body) {
     body.delegate = config
     body()
 
-    // Are we in a node? Just pass it in for now but I want to figure it out
-    Boolean inNode = config.inNode?:false
-
     // Do I have access to current build here?
     echo "currentBuild = ${currentBuild?.toString()}"
     echo "currentBuild class = ${currentBuild?.getClass()?.getName()}"
@@ -20,12 +17,19 @@ def call(body) {
     echo "env class = ${env?.getClass()?.getName()}"
     echo "env.NODE_NAME = ${env?.NODE_NAME}"
 
-    // Some script that is going to exectute
+    // Are we in a node?
+    Boolean inNode = false
+    if(env.NODE_NAME != null) {
+        inNode = true
+        echo "nodeWrapper - in a node"
+    }
+
+    // Some script that is going to execute. In my real world code, I need to be on a node executor for this.
     def toDo = {
         sh "echo 'node wrapper!'"
     }
 
-    // Do it
+    // Do it with or without instantiating a node as required.
     if(inNode) {
 
         // Just execute it
