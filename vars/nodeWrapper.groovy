@@ -15,6 +15,11 @@ def call(body) {
     echo "currentBuild = ${currentBuild?.toString()}"
     echo "currentBuild class = ${currentBuild?.getClass()?.getName()}"
 
+    // Do I have access to the environment here?
+    echo "env = ${env?.toString()}"
+    echo "env class = ${env?.getClass()?.getName()}"
+    echo "env.NODE_NAME = ${env?.NODE_NAME}"
+
     // Some script that is going to exectute
     def toDo = {
         sh "echo 'node wrapper!'"
