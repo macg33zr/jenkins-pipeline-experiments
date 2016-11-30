@@ -17,7 +17,7 @@ def call(body) {
 
     // Some script that is going to exectute
     def toDo = {
-        sh "echo 'node wrapper!"
+        sh "echo 'node wrapper!'"
     }
 
     // Do it
@@ -28,7 +28,7 @@ def call(body) {
 
     } else {
 
-        // The caller doesn't have a node, wrape it in one
+        // The caller doesn't have a node, wrap it in one
         node { toDo() }
     }
 }
