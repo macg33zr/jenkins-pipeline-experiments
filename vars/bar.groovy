@@ -26,4 +26,7 @@ def call(body) {
     config.script.delegate = this
     config.script.resolveStrategy = Closure.DELEGATE_FIRST
     def result = config.script.call()
+    
+    // Returning the script result
+    return result
 }
